@@ -1,0 +1,65 @@
+﻿<Window x:Class="WpfFrontend.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfFrontend"
+        mc:Ignorable="d"
+        Title="JQuiz" Height="450" Width="500">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <local:IntToVisConverter x:Key="IntToVis" />
+        <local:StateToHintConverter x:Key="StateToHint" />
+        <local:BoolToAnswerConverter x:Key="BoolToAnswer" />
+        <local:StateToVisibilityConverter x:Key="StateToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Name="greeting" FontSize="32" TextWrapping="Wrap"
+                   Visibility="{Binding State, Converter={StaticResource StateToVisibilityConverter}, ConverterParameter={x:Static local:QuizState.Tutorial}}">
+            Welcome to JQuiz.<LineBreak /><LineBreak />
+            Type the readings of the words that appear into the box below. This is an endless quiz!<LineBreak /><LineBreak />
+        </TextBlock>
+
+        <TextBlock Grid.Row="0" Name="questionTxt" FontSize="32" Text="{Binding Question.Kanji}"
+                   Visibility="{Binding State, Converter={StaticResource StateToVisibilityConverter}, ConverterParameter={x:Static local:QuizState.Question}}" />
+
+        <StackPanel Grid.Row="0" Visibility="{Binding State, Converter={StaticResource StateToVisibilityConverter}, ConverterParameter={x:Static local:QuizState.Answer}}">
+            <TextBlock Grid.Row="1" Text="{Binding AnswerIsCorrect, Converter={StaticResource BoolToAnswer}}" />
+            
+            <WrapPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Question.Kanji}" FontSize="32" />
+                
+                <ItemsControl ItemsSource="{Binding Question.Readings}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ., StringFormat=【{0}】}" FontSize="32" Margin="20,0" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </WrapPanel>
+
+            <TextBlock Text="{Binding Question.Meanings}" FontSize="20" />
+        </StackPanel>
+
+        <TextBox Name="textBox" Grid.Row="2" Text="{Binding Guess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding SubmitCommand}" Key="Return" />
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBlock Grid.Row="2" Margin="5,2" Text="{Binding State, Converter={StaticResource StateToHint}}" FontSize="20"
+                       Foreground="LightSteelBlue" Visibility="{Binding ElementName=textBox, Path=Text.Length, Converter={StaticResource IntToVis}}" IsHitTestVisible="False"/>
+    </Grid>
+</Window>

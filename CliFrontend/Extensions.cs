@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JQuiz
+namespace CliFrontend
 {
     static class Extensions {
         public static T Random<T>(this IList<T> collection) {
             return collection[rng.Next(collection.Count())];
         }
 
-        static readonly Random rng = new Random();
+        static Random rng = new Random();
     }
 }

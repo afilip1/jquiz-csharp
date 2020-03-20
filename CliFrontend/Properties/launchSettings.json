@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CliFrontend": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\afili\\source\\repos\\JQuiz"
+    }
+  }
+}

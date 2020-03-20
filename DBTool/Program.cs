@@ -19,14 +19,20 @@ namespace DBTool
                 setupCommand.ExecuteNonQuery();
             }
 
-            using var insertCommand = new SQLiteCommand(connection);
-            insertCommand.CommandText = "INSERT INTO words(kanji, readings, meanings, tags) VALUES (@kanji, @readings, @meanings, @tags);";
+            using var insertCommand = new SQLiteCommand(connection)
+            {
+                CommandText = "INSERT INTO words(kanji, readings, meanings, tags) VALUES (@kanji, @readings, @meanings, @tags);"
+            };
 
-            using var selectCommand = new SQLiteCommand(connection);
-            selectCommand.CommandText = "SELECT kanji, readings, meanings, tags FROM words WHERE kanji = @kanji;";
+            using var selectCommand = new SQLiteCommand(connection)
+            {
+                CommandText = "SELECT kanji, readings, meanings, tags FROM words WHERE kanji = @kanji;"
+            };
 
-            using var deleteCommand = new SQLiteCommand(connection);
-            deleteCommand.CommandText = "DELETE FROM words WHERE kanji = @kanji";
+            using var deleteCommand = new SQLiteCommand(connection)
+            {
+                CommandText = "DELETE FROM words WHERE kanji = @kanji"
+            };
 
             foreach (var file in files)
             {
@@ -43,21 +49,19 @@ namespace DBTool
 
                     if (kanji != null)
                     {
-                        using (var reader = selectCommand.ExecuteReader())
+                        using var reader = selectCommand.ExecuteReader();
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                var readingsOld = reader.GetString(1).Split('/');
-                                var readingsNew = readings.Split('/');
-                                readings = string.Join('/', readingsOld.Union(readingsNew));
+                            var readingsOld = reader.GetString(1).Split('/');
+                            var readingsNew = readings.Split('/');
+                            readings = string.Join('/', readingsOld.Union(readingsNew));
 
-                                meanings = $"{meanings}; {reader.GetString(2)}";
+                            meanings = $"{meanings}; {reader.GetString(2)}";
 
-                                tags = string.Join(',', reader.GetString(3).Split(',').Union(new string[] {tags}));
+                            tags = string.Join(',', reader.GetString(3).Split(',').Union(new string[] { tags }));
 
-                                deleteCommand.Parameters.AddWithValue("@kanji", kanji);
-                                deleteCommand.ExecuteNonQuery();
-                            }
+                            deleteCommand.Parameters.AddWithValue("@kanji", kanji);
+                            deleteCommand.ExecuteNonQuery();
                         }
                     }
 

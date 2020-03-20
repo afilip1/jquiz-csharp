@@ -1,28 +1,29 @@
-using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 
 namespace JQuiz
 {
-    interface IWordProvider
+    public interface IWordProvider
     {
         List<Word> GetWords(params string[] tags);
         List<Word> GetWordsWithKanji(params string[] tags);
     }
 
-    class SQLiteWordProvider : IWordProvider
+    public class SQLiteWordProvider : IWordProvider
     {
         public SQLiteWordProvider(string dbfile)
         {
-            connection = new SQLiteConnection("URI=file:data.db");
+            connection = new SQLiteConnection("URI=file:" + dbfile);
             connection.Open();
         }
 
         public List<Word> GetWords(params string[] tags)
         {
-            using var selectCommand = new SQLiteCommand(connection);
-            selectCommand.CommandText = "SELECT kanji, readings, meanings, tags FROM words";
+            using var selectCommand = new SQLiteCommand(connection)
+            {
+                CommandText = "SELECT kanji, readings, meanings, tags FROM words"
+            };
 
             if (tags.Count() != 0) {
                 selectCommand.CommandText += $" WHERE tags like '%{tags.First()}%'";
@@ -45,8 +46,10 @@ namespace JQuiz
 
         public List<Word> GetWordsWithKanji(params string[] tags)
         {
-            using var selectCommand = new SQLiteCommand(connection);
-            selectCommand.CommandText = "SELECT kanji, readings, meanings, tags FROM words WHERE kanji IS NOT NULL";
+            using var selectCommand = new SQLiteCommand(connection)
+            {
+                CommandText = "SELECT kanji, readings, meanings, tags FROM words WHERE kanji IS NOT NULL"
+            };
 
             if (tags.Count() != 0) {
                 selectCommand.CommandText += $" AND (tags like '%{tags.First()}%'";
@@ -68,6 +71,6 @@ namespace JQuiz
             return words;
         }
 
-        SQLiteConnection connection;
+        readonly SQLiteConnection connection;
     }
 }

@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQuiz", "JQuiz\JQuiz.csproj", "{576C33F1-27DA-4970-97B2-746F0B60726A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JQuiz", "JQuiz\JQuiz.csproj", "{576C33F1-27DA-4970-97B2-746F0B60726A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBTool", "DBTool\DBTool.csproj", "{38FD9E7A-16FD-4190-B041-24A94BA7E77B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbTool", "DBTool\DbTool.csproj", "{38FD9E7A-16FD-4190-B041-24A94BA7E77B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfFrontend", "WpfFrontend\WpfFrontend.csproj", "{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CliFrontend", "CliFrontend\CliFrontend.csproj", "{42B8C060-2F4C-4803-AF70-B06A86788C9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{576C33F1-27DA-4970-97B2-746F0B60726A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +45,35 @@ Global
 		{38FD9E7A-16FD-4190-B041-24A94BA7E77B}.Release|x64.Build.0 = Release|Any CPU
 		{38FD9E7A-16FD-4190-B041-24A94BA7E77B}.Release|x86.ActiveCfg = Release|Any CPU
 		{38FD9E7A-16FD-4190-B041-24A94BA7E77B}.Release|x86.Build.0 = Release|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Debug|x64.Build.0 = Debug|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Debug|x86.Build.0 = Debug|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Release|x64.ActiveCfg = Release|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Release|x64.Build.0 = Release|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Release|x86.ActiveCfg = Release|Any CPU
+		{89C495B3-436D-4CCD-B9A7-D0CC4B2BE80D}.Release|x86.Build.0 = Release|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Debug|x64.Build.0 = Debug|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Debug|x86.Build.0 = Debug|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Release|x64.ActiveCfg = Release|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Release|x64.Build.0 = Release|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{42B8C060-2F4C-4803-AF70-B06A86788C9F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AEC80B6-4F27-4805-AAE2-2C6E7ECF5D0F}
 	EndGlobalSection
 EndGlobal
