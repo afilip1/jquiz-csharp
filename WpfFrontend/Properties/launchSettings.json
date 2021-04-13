@@ -2,7 +2,7 @@
   "profiles": {
     "WpfFrontend": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\afili\\source\\repos\\JQuiz"
+      "workingDirectory": "$(SolutionDir)"
     }
   }
 }
